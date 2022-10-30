@@ -46,7 +46,7 @@ class eight_puzzle
         }
 
 
-		bool valid_right() 			//these 4 will check if 0 is present first so that a swap could be made
+	bool valid_right() 			//these 4 will check if 0 is present first so that a swap could be made
         {
             if (empty.second == currPuzzle.size() - 1) 
             {
@@ -54,7 +54,7 @@ class eight_puzzle
             }
             return true;
         }
-		bool valid_left() 
+	bool valid_left() 
         {
             if (empty.second == 0) 
             {
@@ -80,7 +80,7 @@ class eight_puzzle
         }
 
 
-		void swap_right() 		//and if movement of zero is possible, swap the positions!
+	void swap_right() 		//and if movement of zero is possible, swap the positions!
         {
             if (valid_right()) 
             {
@@ -90,7 +90,7 @@ class eight_puzzle
                 empty.second = empty.second + 1;
             }
         }
-		void swap_left() 
+	void swap_left() 
         {
             if (valid_left()) 
             {
