@@ -30,7 +30,7 @@ class eight_puzzle
             this->currPuzzle = puzzle;
             g_cost = 0;
             h_cost = 0;
-            empty = CalcBlank();
+            empty = Calc_empty();	//function will be defined one i get it working
         }
 
         void print_puzzle() 					//prints out 9 values in 3 rows, or the 3x3 puzzle
