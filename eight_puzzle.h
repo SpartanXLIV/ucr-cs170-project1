@@ -46,43 +46,9 @@ class eight_puzzle
         }
 
 
-	bool valid_right() 			//these 4 will check if 0 is present first so that a swap could be made
+	void swap_right() 		//if movement of zero is possible, swap the positions!
         {
-            if (empty.second == currPuzzle.size() - 1) 
-            {
-                return false;
-            }
-            return true;
-        }
-	bool valid_left() 
-        {
-            if (empty.second == 0) 
-            {
-                return false;
-            }
-            return true;
-        }
-        bool valid_down() 
-        {
-            if (empty.first == currPuzzle.size() - 1) 
-            {
-                return false;
-            }
-            return true;
-        }
-        bool valid_up() 		
-        {
-            if (empty.first == 0) 
-            {
-                return false;
-            }
-           return true;
-        }
-
-
-	void swap_right() 		//and if movement of zero is possible, swap the positions!
-        {
-            if (valid_right()) 
+            if (empty.second != currPuzzle.size() - 1) //check if ur not on the edge 
             {
                 string temp = currPuzzle.at(empty.first).at(empty.second + 1);
                 currPuzzle.at(empty.first).at(empty.second + 1) = "0";
@@ -90,9 +56,9 @@ class eight_puzzle
                 empty.second = empty.second + 1;
             }
         }
-	void swap_left() 
+		void swap_left() 
         {
-            if (valid_left()) 
+            if (empty.second != 0) //check if ur not on the edge 
             {
                 string temp = currPuzzle.at(empty.first).at(empty.second - 1);
                 currPuzzle.at(empty.first).at(empty.second - 1) = "0";
@@ -102,7 +68,7 @@ class eight_puzzle
         }
         void swap_down() 
         {
-            if (valid_down()) 
+            if (empty.first != currPuzzle.size() - 1)  //check if ur not on the ceiling
             {
                 string temp = currPuzzle.at(empty.first + 1).at(empty.second);
                 currPuzzle.at(empty.first + 1).at(empty.second) = "0";
@@ -112,7 +78,7 @@ class eight_puzzle
         }
         void swap_up() 
         {
-            if (valid_up()) 
+            if (empty.first != 0) 				//check if not on the floor
             {
                 string temp = currPuzzle.at(empty.first - 1).at(empty.second);
                 currPuzzle.at(empty.first - 1).at(empty.second) = "0";
