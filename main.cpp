@@ -60,7 +60,6 @@ int main()
         else 
         {
             cout << "Invalid input! Please enter only '1' or '2'! " << endl;
-            userInput.clear();
         }
     }
 
