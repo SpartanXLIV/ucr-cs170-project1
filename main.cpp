@@ -3,8 +3,8 @@
 #include <iostream>
 #include <vector>
 #include <queue>
-#include <utility> //will use later
-#include <map>    //will use later
+#include <utility>
+#include <map>
 
 
 using namespace std;
@@ -74,5 +74,41 @@ int main()
 		cout << "Please only enter a valid number 1-3" << endl;
 		cin >> user_alg;
 	}
-  return 0;
+
+    eight_puzzle setPuzzle(puzzleBoard);
+    priority_queue<eight_puzzle> states;
+    map<string, bool> visitedStates;
+    states.push(setPuzzle);
+    
+    int queueSizeMAX = states.size();
+    int nodesExpanded = 0;	//used to count number of nodes expanded
+    
+    while(!states.empty()) 						//fillup
+    {
+        if (queueSizeMAX < states.size()) 
+        {
+            queueSizeMAX = states.size();
+        }
+        eight_puzzle currState = states.top();
+        states.pop();
+        if (Goal_state(currState)) //check if current state is == goal state
+        {
+            PrintState(currState);
+            cout << endl << "Goal state!" << endl << endl;
+            cout << "Solution depth was " << currState.Get_g_cost() << endl;
+            cout << "Number of nodes expanded: " << nodesExpanded << endl;
+            cout << "Max queue size: " << queueSizeMAX << endl;
+            return 0;
+        }
+ 
+        PrintState(currState);
+        StateExpansion(currState, states, visitedStates, user_alg);
+        nodesExpanded++;
+    }
+    
+    cout << "No possuble solution found!" << endl;	//usually if the puzzle is impossible to solve
+    cout << "Number of nodes expanded: " << nodesExpanded << endl;
+    cout << "Max queue size: " << queueSizeMAX << endl;
+    
+    return 0;
 }
