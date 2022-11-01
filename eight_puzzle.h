@@ -1,7 +1,7 @@
 #ifndef EIGHT_PUZZLE_H
 #define EIGHT_PUZZLE_H
-#include <iostream> //DONT FORGET, IT'S IN THE TOY BOX
-#include <map>
+#include <iostream> 
+#include <map>	//DONT FORGET, IT'S IN THE TOY BOX
 #include <vector>
 #include <queue>
 
@@ -47,7 +47,7 @@ class eight_puzzle
         }
 
 
-	void swap_right() 		//if movement of zero is possible, swap the positions!
+		void swap_right() 		//if movement of zero is possible, swap the positions!
         {
             if (empty.second != currPuzzle.size() - 1) //check if ur not on the edge 
             {
@@ -57,7 +57,7 @@ class eight_puzzle
                 empty.second = empty.second + 1;
             }
         }
-	void swap_left() 
+		void swap_left() 
         {
             if (empty.second != 0) //check if ur not on the edge 
             {
@@ -94,7 +94,7 @@ class eight_puzzle
         {
             return this->g_cost;
         }
-        int Get_h_cost() const //return h cosr
+        int Get_h_cost() const //return h cost
         {
             return this->h_cost;
         }
@@ -234,7 +234,12 @@ class eight_puzzle
 
         void Print_cost() 
         {
-		cout << "The best state to expand with a g(n) = " << g_cost << " and h(n) = " << h_cost << " is... " << endl;
+			cout << "The best state to expand with a g(n) = " << g_cost << " and h(n) = " << h_cost << " is... " << endl;
+        }
+        
+        bool operator<(const eight_puzzle &lhs) const // solves a declaration problem, we want to return the lowest value
+        {
+            return !((Get_g_cost() + Get_h_cost()) < (lhs.Get_g_cost() + lhs.Get_h_cost()));
         }
 };
 
@@ -264,8 +269,8 @@ bool Goal_state(const eight_puzzle &puzzle) //compare the one string to check if
 //EXPAND YOUR MIND, OMORI!
 void StateExpansion(eight_puzzle curr, priority_queue<eight_puzzle> &states, map<string, bool> &visited_states, const int &alg) //
 {
-    eight_puzzle puzzle_right = curr.Operate_right(curr); //keeps track if it can move in any direction
-    eight_puzzle puzzle_left = curr.Operate_left(curr);
+	eight_puzzle puzzle_right = curr.Operate_right(curr); //keeps track if it can move in any direction
+	eight_puzzle puzzle_left = curr.Operate_left(curr);
     eight_puzzle puzzle_down = curr.Operate_down(curr);
     eight_puzzle puzzle_up = curr.Operate_up(curr);
 
