@@ -10,7 +10,7 @@
 using namespace std;
 
 
-void PrintState(eight_puzzle setPuzzle) 
+void Print_state(eight_puzzle setPuzzle) 
 {
     setPuzzle.Print_cost();
     setPuzzle.eight_puzzle::print_puzzle();
@@ -92,7 +92,7 @@ int main()
         states.pop();
         if (Goal_state(currState)) //check if current state is == goal state
         {
-            PrintState(currState);
+            Print_state(currState);
             cout << endl << "Goal state!" << endl << endl;
             cout << "Solution depth was " << currState.Get_g_cost() << endl;
             cout << "Number of nodes expanded: " << nodesExpanded << endl;
@@ -100,7 +100,7 @@ int main()
             return 0;
         }
  
-        PrintState(currState);
+        Print_state(currState);
         StateExpansion(currState, states, visitedStates, user_alg);
         nodesExpanded++;
     }
